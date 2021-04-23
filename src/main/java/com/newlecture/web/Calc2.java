@@ -66,7 +66,7 @@ public class Calc2 extends HttpServlet {
 				result = x+y;
 			else
 				result = x-y;
-			out.printf("결과는! %d\n", result);
+			out.printf("결과는 %d\n", result);
 			
 		} else {
 //			application.setAttribute("value", v);
@@ -77,11 +77,13 @@ public class Calc2 extends HttpServlet {
 
 			Cookie valueCookie = new Cookie("value", String.valueOf(v));
 			Cookie opCookie = new Cookie("op", op);
-			valueCookie.setPath("/cal2");
-			valueCookie.setMaxAge(1000);
-			opCookie.setPath("/cal2");
+			valueCookie.setPath("/calc2");
+//			valueCookie.setMaxAge(1000);
+			opCookie.setPath("/calc2");
 			response.addCookie(valueCookie);
 			response.addCookie(opCookie);
+			
+			response.sendRedirect("calc2.html");
 		}
 	}
 }
