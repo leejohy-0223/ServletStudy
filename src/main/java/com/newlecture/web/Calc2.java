@@ -43,7 +43,7 @@ public class Calc2 extends HttpServlet {
 				result = x+y;
 			else
 				result = x-y;
-			out.printf("결과는 %d\n", result);
+			out.printf("결과는! %d\n", result);
 			
 		} else {
 			application.setAttribute("value", v);
