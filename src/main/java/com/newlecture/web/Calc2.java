@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 @WebServlet("/calc2")
 public class Calc2 extends HttpServlet {
@@ -17,6 +18,8 @@ public class Calc2 extends HttpServlet {
 			throws IOException, ServletException {
 
 		ServletContext application = request.getServletContext();
+		HttpSession session = request.getSession();
+		
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=UTF-8");
 //		request.setCharacterEncoding("UTF-8");
@@ -33,9 +36,11 @@ public class Calc2 extends HttpServlet {
 
 		if (op.equals("=")) {
 			
-			int x = (Integer)application.getAttribute("value");
+//			int x = (Integer)application.getAttribute("value");
+			int x = (Integer)session.getAttribute("value");
 			int y = v;
-			String operator = (String)application.getAttribute("op");
+//			String operator = (String)application.getAttribute("op");
+			String operator = (String)session.getAttribute("op");
 			
 			int result = 0;
 			
@@ -46,8 +51,11 @@ public class Calc2 extends HttpServlet {
 			out.printf("결과는! %d\n", result);
 			
 		} else {
-			application.setAttribute("value", v);
-			application.setAttribute("op", op);
+//			application.setAttribute("value", v);
+//			application.setAttribute("op", op);
+			session.setAttribute("value", v);
+			session.setAttribute("op", op);
+
 		}
 	}
 }
