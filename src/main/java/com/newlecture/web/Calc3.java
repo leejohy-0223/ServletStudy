@@ -47,15 +47,21 @@ public class Calc3 extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
-		} else { // =아닐 경우, 누적필요
+		}
+		else if (operator != null && operator.equals("C")) {
+			exp = "";
+		}
+		else { // =아닐 경우, 누적필요
 			exp += (value == null) ? "" : value;
 			exp += (operator == null) ? "" : operator;
 			exp += (dot == null) ? "" : dot;
 		}
 
 		Cookie expCookie = new Cookie("exp", exp);
-
+		
+		if(operator != null && operator.equals("C"))
+			expCookie.setMaxAge(0);
+		
 		response.addCookie(expCookie);
 		response.sendRedirect("calcpage");
 	}
